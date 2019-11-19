@@ -76,7 +76,7 @@ $build = Import-Csv -Path $FileBrowser.FileName
 
 
 #######################################
-## login to Azure cccount           # #
+## login to Azure account           # #
 #######################################
 
 if (-not $connect) {
@@ -105,8 +105,9 @@ else {
 }
 
 #######################################
-# set Azure context                   #
+## set Azure context                 ##
 #######################################
+
 Write-Host "Setting context to $($selectedSubscription.SubscriptionId)..." -ForegroundColor Green
 $azContext = Set-AzContext -Subscription $selectedSubscription.SubscriptionId
 if (-not $azContext) {
@@ -140,7 +141,7 @@ Write-Host "[hidden]`n"
 
 ForEach ($builds in $build){
     
-    New-AzDeployment -Name test -rgName $builds.ResourceGroup  -Location $builds.Location -rgLocation $builds.Location  -TemplateFile C:\temp\deploy_resource_group.json
+    New-AzDeployment -Name test -rgName $builds.ResourceGroup  -Location $builds.Location -rgLocation $builds.Location  -TemplateUri 'https://raw.githubusercontent.com/AzureArchAutomation/automation/master/deploy_resource_group.json'
 
     }
 
@@ -151,7 +152,7 @@ ForEach ($builds in $build){
 
 ForEach ($builds in $build){
     
-    New-AzDeployment -Name test -rgname $builds.ResourceGroup -rgLocation $builds.Location -Location $builds.Location -asName $builds.AvailabilitySet -TemplateFile C:\temp\deploy_availability_set.json
+    New-AzDeployment -Name test -rgname $builds.ResourceGroup -rgLocation $builds.Location -Location $builds.Location -asName $builds.AvailabilitySet -TemplateUri 'https://raw.githubusercontent.com/AzureArchAutomation/automation/master/deploy_availability_set.json'
 
     }
 
@@ -162,7 +163,7 @@ ForEach ($builds in $build){
 
 ForEach ($builds in $build){
     
-    New-AzDeployment -Name test -rgname $builds.ResourceGroup -rgLocation $builds.Location -subnetid $builds.subnetid -vmname $builds.servername -Location $builds.Location -TemplateFile C:\temp\deploy_network_interface.json
+    New-AzDeployment -Name test -rgname $builds.ResourceGroup -rgLocation $builds.Location -subnetid $builds.subnetid -vmname $builds.servername -Location $builds.Location -TemplateUri 'https://raw.githubusercontent.com/AzureArchAutomation/automation/master/deploy_network_interface.json'
 
     }
      
@@ -172,6 +173,6 @@ ForEach ($builds in $build){
 
 ForEach ($builds in $build){    
     
-    New-AzResourceGroupDeployment -name test -ResourceGroupNameFromTemplate $builds.ResourceGroup -ResourceGroupName $builds.ResourceGroup -rgname $builds.ResourceGroup -publisher $builds.publisher -offer $builds.offer -sku $builds.sku -subnetID $builds.subNetID -rgLocation $builds.Location -vmname $builds.servername -adminUsername $localVmAdminUserName -adminpassword $localVmAdminPassword -size $builds.size -asname $builds.AvailabilitySet -TemplateFile 'C:\temp\deployvm.json'
+    New-AzResourceGroupDeployment -name test -ResourceGroupNameFromTemplate $builds.ResourceGroup -ResourceGroupName $builds.ResourceGroup -rgname $builds.ResourceGroup -publisher $builds.publisher -offer $builds.offer -sku $builds.sku -subnetID $builds.subNetID -rgLocation $builds.Location -vmname $builds.servername -adminUsername $localVmAdminUserName -adminpassword $localVmAdminPassword -size $builds.size -asname $builds.AvailabilitySet -TemplateUri 'https://raw.githubusercontent.com/AzureArchAutomation/automation/master/DeployVM.json'
 
      }
