@@ -173,6 +173,6 @@ ForEach ($builds in $build){
 
 ForEach ($builds in $build){    
     
-    New-AzResourceGroupDeployment -name test -ResourceGroupNameFromTemplate $builds.ResourceGroup -ResourceGroupName $builds.ResourceGroup -rgname $builds.ResourceGroup -publisher $builds.publisher -offer $builds.offer -sku $builds.sku -subnetID $builds.subNetID -rgLocation $builds.Location -vmname $builds.servername -adminUsername $localVmAdminUserName -adminpassword $localVmAdminPassword -size $builds.size -asname $builds.AvailabilitySet -TemplateUri 'https://raw.githubusercontent.com/AzureArchAutomation/automation/master/DeployVM.json'
+    New-AzResourceGroupDeployment -name test -ResourceGroupNameFromTemplate $builds.ResourceGroup -ResourceGroupName $builds.ResourceGroup -rgname $builds.ResourceGroup -publisher $builds.publisher -offer $builds.offer -sku $builds.sku -subnetID $builds.subNetID -rgLocation $builds.Location -vmname $builds.servername -adminUsername $localVmAdminUserName -adminpassword $localVmAdminPassword -size $builds.size -asname $builds.AvailabilitySet -TemplateUri 'https://raw.githubusercontent.com/AzureArchAutomation/automation/master/Deploy_Virtual_Machines.json'
 
      }
