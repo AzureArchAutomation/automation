@@ -381,7 +381,7 @@
           "modulesUrl": "[variables('DCDSCModuleUrl')]",
           "SasToken": "",
           "configurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-          "wmfVersion": "4.0",
+          "wmfVersion": "5.0",
           "Properties": {
             "DomainName": "[parameters('domainName')]",
             "AdminCreds": {
