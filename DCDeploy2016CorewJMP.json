@@ -308,9 +308,6 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('VMNameJMP1'), '-nic'))]"
             }
           ]
-        },
-        "availabilitySet": {
-         // "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
         }
       },
       "dependsOn": [
