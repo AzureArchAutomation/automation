@@ -370,7 +370,7 @@
       "apiVersion": "2015-06-15",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[resourceid('Microsoft.Compute/virtualMachines/', 'VMNameDC1')]"
+        "[resourceid('Microsoft.Compute/virtualMachines', concat(parameters('VMNameDC1')))]"
       ],
       "properties": {
         "publisher": "Microsoft.Powershell",
