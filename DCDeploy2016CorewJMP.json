@@ -103,7 +103,7 @@
         "group": "Infrastructure settings",
         "description": "Change this value to your repo name if deploying from a fork"
       },
-      "defaultValue": "https://raw.githubusercontent.com/AzureArchAutomation/automation"
+      "defaultValue": "https://raw.githubusercontent.com/AzureArchAutomation/automation/master"
     },
       "location": {
       "type": "string",
