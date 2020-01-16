@@ -88,23 +88,8 @@
       "type": "string",
       "metadata": {
         "description": "subnet ID inside the VNET"
-      }   
-  },
-    "domainName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name for new domain"
-      }   
-  },
-  
-    "_artifactsLocation": {
-      "type": "string",
-      "metadata": {
-        "group": "Infrastructure settings",
-        "description": "Change this value to your repo name if deploying from a fork"
-      },
-      "defaultValue": "https://raw.githubusercontent.com/AzureArchAutomation/automation/master"
-    },
+      }      
+  },  
       "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
@@ -114,9 +99,6 @@
     }
   },
   "variables": {
-    "DSCmodulesUrl": "[concat(parameters('_artifactsLocation'),'/DSC/')]",
-    "DCDSCModuleUrl": "[concat(variables('DSCmodulesUrl'), 'CreateADPDC.ps1.zip')]",
-    "Configurationurl":"https://raw.githubusercontent.com/AzureArchAutomation/automation/master/dsc/configurationdata.psd1"
   },
   "resources": [
      {
@@ -362,40 +344,6 @@
       "dependsOn": [
       //  "[resourceId('Microsoft.Network/virtualNetworks/', parameters ('VirtualNetworkName'))]"
       ]
-    },
-
-    {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('VMNameDC1'),'/CreateADPDC')]",
-      "apiVersion": "2015-06-15",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [
-        "[resourceid('Microsoft.Compute/virtualMachines', concat(parameters('VMNameDC1')))]"
-      ],
-      "properties": {
-        "publisher": "Microsoft.Powershell",
-        "type": "DSC",
-        "typeHandlerVersion": "2.19",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-          "modulesUrl": "[variables('DCDSCModuleUrl')]",
-          "SasToken": "",
-          "configurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-          "wmfVersion": "5.0",
-          "Properties": {
-            "DomainName": "[parameters('domainName')]",
-            "AdminCreds": {
-              "UserName": "[parameters('virtualMachineAdminPassword')]",
-              "Password": "PrivateSettingsRef:AdminPassword"
-            }
-          }
-        },
-        "protectedSettings": {
-          "Items": {
-            "AdminPassword": "[parameters('virtualMachineAdminPassword')]"
-          }
-        }
-      }
     }
   ],
   "outputs": {}
