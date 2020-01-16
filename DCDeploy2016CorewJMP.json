@@ -115,7 +115,7 @@
   },
   "variables": {
     "DSCmodulesUrl": "[concat(parameters('_artifactsLocation'),'/DSC/')]",
-    "DCDSCModuleUrl": "[concat(variables('DSCmodulesUrl'), 'CreateADPDC.zip')]",
+    "DCDSCModuleUrl": "[concat(variables('DSCmodulesUrl'), 'CreateADPDC.ps1.zip')]",
     "Configurationurl":"https://raw.githubusercontent.com/AzureArchAutomation/automation/master/dsc/configurationdata.psd1"
   },
   "resources": [
